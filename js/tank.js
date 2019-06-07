@@ -5,14 +5,18 @@ $(document).ready(function(){
 	var capMax = 10;
 	var capMin = 0;
 	var maxWater = capMax - capMin;
+	var highWater = 9;
+	var lowWater = 1;
 
 	//set functions
 	setValue();
 	setValuesTank();
+	setValuesAlarms();
 	setWaterFillByTank();
 	inhabiSetup();
 	calculeMaxWater();
 	calculeWater(waterLts);
+	setAlarms(highWater, lowWater);
 
 	//Setup tank
 	$('#edit').click(function(){
@@ -35,17 +39,31 @@ $(document).ready(function(){
 	});
 
 	$('#confirm').click(function(){
-		$("#moreWater").attr("disabled", false);
-		$("#lessWater").attr("disabled", false);
-		$("#setWater").attr("disabled", false);
-		$("#setNumber").attr("disabled", false);
-		$("#drain").attr("disabled", false);
-		$(".setup").attr("disabled", true);
+		
 		var capMax = parseFloat($('#max').val());
 		var capMin = parseFloat($('#min').val());
-		$('#max').val(capMax);
-		$('#min').val(capMin);
-		calculeMaxWater();
+		
+
+		var highLevel = parseFloat($('#high').val());
+		var lowLevel = parseFloat($('#low').val());
+
+		if(highLevel < capMax && lowLevel > capMin){
+			$('#high').val(highLevel);
+			$('#low').val(lowLevel);
+			$('#max').val(capMax);
+			$('#min').val(capMin);
+			$("#moreWater").attr("disabled", false);
+			$("#lessWater").attr("disabled", false);
+			$("#setWater").attr("disabled", false);
+			$("#setNumber").attr("disabled", false);
+			$("#drain").attr("disabled", false);
+			$(".setup").attr("disabled", true);
+			waterLts = parseFloat($('#min').val());
+			setValue();
+		} else {
+			alert("Alarma fuera de rango de la capacidad del tanque");
+		}
+		
 	});
 
 	//Manual Control Water
@@ -54,6 +72,7 @@ $(document).ready(function(){
 			waterLts++;
 			setValue();
 			setWaterFillByTank();
+			setAlarms(highWater, lowWater);
 		}
 	});
 	$('#lessWater').click(function(){
@@ -61,6 +80,7 @@ $(document).ready(function(){
 			waterLts--;
 			setValue();
 			setWaterFillByTank();
+			setAlarms(highWater, lowWater);
 		}
 	});
 	
@@ -71,6 +91,7 @@ $(document).ready(function(){
 			waterLts = parseFloat($('#setNumber').val());
 			setValue();
 			setWaterFillByTank();
+			setAlarms(highWater, lowWater);
 		}else if ($('#setNumber').val() == ""){
 			alert("Ingresa un valor primero!");
 		} else {
@@ -81,7 +102,7 @@ $(document).ready(function(){
 	//Drain water function
 	$('#drain').click(function(){
 		if(confirm('Are u sure u want drain tank?')){
-  			waterLts = 0;
+  			waterLts = parseFloat($('#min').val());
 			setValue();
 			setWaterFillByTank();
  		}
@@ -98,15 +119,44 @@ $(document).ready(function(){
 		$('#min').val(capMin);
 	}
 
+	//Set values alarms
+	function setValuesAlarms(){
+		$('#high').val(highWater);
+		$('#low').val(lowWater);
+	}
+
 	//Calculate the max water
 	function calculeMaxWater(){
 		maxWater = parseFloat($('#max').val()) - parseFloat($('#min').val());
 		return maxWater;
 	}
 
+	//Calculate the average water
 	function calculeWater(waterLts){
 		water = waterLts - parseFloat($('#min').val());
 		return water;
+	}
+
+	//set Alarms
+	function setAlarms(highWater, lowWater){
+		var highWater = parseFloat($('#high').val());
+		var lowWater = parseFloat($('#low').val());
+		if(waterLts >= highWater){
+			$('#highLevel').css("visibility", "visible");
+			$('#lowLevel').css("visibility", "hidden");
+			$('#midLevel').css("visibility", "hidden");
+			$('#water').css('background-color', '#721c24');
+		} else if (waterLts <= lowWater){
+			$('#highLevel').css("visibility", "hidden");
+			$('#lowLevel').css("visibility", "visible");
+			$('#midLevel').css("visibility", "hidden");
+			$('#water').css("background-color", '#856404');
+		} else {
+			$('#highLevel').css("visibility", "hidden");
+			$('#lowLevel').css("visibility", "hidden");
+			$('#midLevel').css("visibility", "visible");
+			$('#water').css("background-color", '#004085');
+		}
 	}
 
 	//states of water tank's
