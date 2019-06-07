@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Tank Utilities</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	<!-- CSS-->
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row" style="padding: 1%;">
+			<div class="col-12">
+      			<h1 class="display-4">Tank Utilities</h1>
+    		</div>
+		</div>
+		<div class="row">
+			<div class="col-12" style="min-height: 550px;">
+				<div class="row" style="min-height: inherit;">
+					<div class="col-7" style="min-height: inherit; display: inline-block;" >
+						<div class="row">
+							<div class="col-9 border" style="min-height: 480px; display: inline-block; padding: 2%;">
+								<p class="h6">Water Tank</p>
+								<div class="tank">
+									<div class="water"></div>
+								</div>
+								<span class="tagTank">Min</span>
+								<span class="tagTankMax">Max</span>
+							</div>
+							<div class="col-3" style="min-height: 480px; display: inline-block;">
+								<div class="input-group">
+									<span class="tagButton">Level (Lts)</span>
+  									<input type="number" class="form-control" placeholder="0">
+  									<div class="input-group-append" id="button-addon4">
+    									<button class="btn btn-outline-primary" type="button">+</button>
+   										<button class="btn btn-outline-secondary" type="button">-</button>
+  									</div>
+								</div>
+								<div class="input-group" style="margin-top: 35%;">
+									<span class="tagButton">Set point (Lts)</span>
+  									<input type="number" class="form-control" placeholder="0">
+  									<div class="input-group-append" id="button-addon4">
+    									<button class="btn btn-outline-primary" type="button">Set</button>
+  									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 text-right" style="min-height: 70px;">
+								<button type="button" class="btn btn-danger" style="margin-top: 2%; margin-right: 24%;">Drain</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-5" style="min-height: inherit; display: inline-block;" >
+						<div class="row">
+							<div class="col-12 border" style="min-height: 240px; padding: 4%;">
+								<p class="h6">Capacity</p>
+								<div class="input-group" style="margin-top: 7%;">
+    								<span class="input-group-text" id="basic-addon1">Maximum</span>
+  									<input type="number" class="form-control" placeholder="0">
+  									<span class="input-group-text" id="basic-addon1">Lts</span>
+								</div>
+								<div class="input-group" style="margin-top: 7%;">
+    								<span class="input-group-text" id="basic-addon1">Minimum</span>
+  									<input type="number" class="form-control" placeholder="0">
+  									<span class="input-group-text" id="basic-addon1">Lts</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 border" style="min-height: 240px; padding: 4%;">
+								<p class="h6">Alarms</p>
+								<div class="input-group" style="margin-top: 7%;">
+    								<span class="input-group-text" id="basic-addon1">High Level</span>
+  									<input type="number" class="form-control" placeholder="0">
+  									<span class="input-group-text" id="basic-addon1">Lts</span>
+								</div>
+								<div class="input-group" style="margin-top: 7%;">
+    								<span class="input-group-text" id="basic-addon1">Low Level</span>
+  									<input type="number" class="form-control" placeholder="0">
+  									<span class="input-group-text" id="basic-addon1">Lts</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 text-right" style="min-height: 70px;">
+								<input class="btn btn-primary" type="button" value="Edit" style="margin-top: 2%;">
+								<input class="btn btn-primary" type="submit" value="Cancel" style="margin-top: 2%;">
+								<input class="btn btn-primary" type="reset" value="Confirm" style="margin-top: 2%;">	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<footer class="col-12 border-top">Test Omnicon by ff</footer>
+		</div>
+	</div>
+</body>
+</html>
