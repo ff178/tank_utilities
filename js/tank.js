@@ -1,32 +1,47 @@
 $(document).ready(function(){
+
+	//init state water tank's
 	var waterLts = 1;
+	var capMax = 10;
+	var capMin = 0; 
+	//set functions
 	setValue();
 	setWaterFill();
+	inhabiSetup();
 
+	//Manual Control Water
 	$('#moreWater').click(function(){
-		waterLts++;
-		setValue();
-		setWaterFill();
-		if (parseFloat(waterLts) > 10) {
-      		$('#moreWater').attr("disabled", true);
-   		} 
-   		
+		if (parseFloat(waterLts) < capMax){
+			waterLts++;
+			setValue();
+			setWaterFill();
+		}
 	});
-
 	$('#lessWater').click(function(){
-		waterLts--;
-		setValue();
-		setWaterFill();
-		if (parseFloat(waterLts) < 0) {
-      		$('#lessWater').attr("disabled", true);
-   		} 
-
+		if (parseFloat(waterLts) > capMin){
+			waterLts--;
+			setValue();
+			setWaterFill();
+		}
 	});
-
 	function setValue(){
 		$("#waterLts").val(waterLts);	
 	}
 
+	//SetAuto Control Water
+	$('#setWater').click(function(){
+		if (parseFloat($('#setNumber').val()) >= capMin && parseFloat($('#setNumber').val()) <= capMax){
+			waterLts = parseFloat($('#setNumber').val());
+			setValue();
+			setWaterFill();
+		}else if ($('#setNumber').val() == ""){
+			alert("Ingresa un valor primero!");
+		} else {
+			alert("Capacidad fuera de rango!");
+		}
+	});
+
+	//states of water tank's
 	function setWaterFill(){
 		switch(waterLts){
 			case 0:
@@ -63,6 +78,11 @@ $(document).ready(function(){
 				$("#water").css("height", "100%");
 				break;
 		}
+	}
+
+	//Block default inputs setup 
+	function inhabiSetup(){
+		$(".setup").attr("disabled", true);
 	}
 
 
