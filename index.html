@@ -12,6 +12,10 @@
 
 	<!-- CSS-->
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+
+	<!-- JS-->
+	<script type="text/javascript" src="./js/tank.js"></script>
+
 </head>
 <body>
 	<div class="container">
@@ -28,7 +32,7 @@
 							<div class="col-9 border" style="min-height: 480px; display: inline-block; padding: 2%;">
 								<p class="h6">Water Tank</p>
 								<div class="tank">
-									<div class="water"></div>
+									<div id="water" class="water"></div>
 								</div>
 								<span class="tagTank">Min</span>
 								<span class="tagTankMax">Max</span>
@@ -36,15 +40,15 @@
 							<div class="col-3" style="min-height: 480px; display: inline-block;">
 								<div class="input-group">
 									<span class="tagButton">Level (Lts)</span>
-  									<input type="number" class="form-control" placeholder="0">
+  									<input id="waterLts" type="number" value="0" class="form-control" placeholder="0" min="0" pattern="^[0-9]+" readonly>
   									<div class="input-group-append" id="button-addon4">
-    									<button class="btn btn-outline-primary" type="button">+</button>
-   										<button class="btn btn-outline-secondary" type="button">-</button>
+    									<button id="moreWater" class="btn btn-outline-primary" type="button">+</button>
+   										<button id="lessWater" class="btn btn-outline-secondary" type="button">-</button>
   									</div>
 								</div>
 								<div class="input-group" style="margin-top: 35%;">
 									<span class="tagButton">Set point (Lts)</span>
-  									<input type="number" class="form-control" placeholder="0">
+  									<input type="number" class="form-control" placeholder="0" min="0">
   									<div class="input-group-append" id="button-addon4">
     									<button class="btn btn-outline-primary" type="button">Set</button>
   									</div>
