@@ -57,7 +57,7 @@
 						</div>
 						<div class="row">
 							<div class="col-12 text-right" style="min-height: 70px;">
-								<button type="button" class="btn btn-danger" style="margin-top: 2%; margin-right: 24%;">Drain</button>
+								<button id="drain" type="button" class="btn btn-danger" style="margin-top: 2%; margin-right: 24%;">Drain</button>
 							</div>
 						</div>
 					</div>
@@ -67,12 +67,12 @@
 								<p class="h6">Capacity</p>
 								<div class="input-group" style="margin-top: 7%;">
     								<span class="input-group-text" id="basic-addon1">Maximum</span>
-  									<input type="number" class="form-control setup" placeholder="0">
+  									<input id="max" type="number" class="form-control setup" placeholder="0">
   									<span class="input-group-text" id="basic-addon1">Lts</span>
 								</div>
 								<div class="input-group" style="margin-top: 7%;">
     								<span class="input-group-text" id="basic-addon1">Minimum</span>
-  									<input type="number" class="form-control setup" placeholder="0">
+  									<input id="min" type="number" class="form-control setup" placeholder="0">
   									<span class="input-group-text" id="basic-addon1">Lts</span>
 								</div>
 							</div>
@@ -82,21 +82,21 @@
 								<p class="h6">Alarms</p>
 								<div class="input-group" style="margin-top: 7%;">
     								<span class="input-group-text" id="basic-addon1">High Level</span>
-  									<input type="number" class="form-control setup" placeholder="0">
+  									<input id="high" type="number" class="form-control setup" placeholder="0">
   									<span class="input-group-text" id="basic-addon1">Lts</span>
 								</div>
 								<div class="input-group" style="margin-top: 7%;">
     								<span class="input-group-text" id="basic-addon1">Low Level</span>
-  									<input type="number" class="form-control setup" placeholder="0">
+  									<input id="low" type="number" class="form-control setup" placeholder="0">
   									<span class="input-group-text" id="basic-addon1">Lts</span>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-12 text-right" style="min-height: 70px;">
-								<input class="btn btn-primary" type="button" value="Edit" style="margin-top: 2%;">
-								<input class="btn btn-primary" type="submit" value="Cancel" style="margin-top: 2%;">
-								<input class="btn btn-primary" type="reset" value="Confirm" style="margin-top: 2%;">	
+								<input id="edit" class="btn btn-primary" type="button" value="Edit" style="margin-top: 2%;">
+								<input id="cancel" class="btn btn-primary" type="submit" value="Cancel" style="margin-top: 2%;">
+								<input id="confirm" class="btn btn-primary" type="reset" value="Confirm" style="margin-top: 2%;">	
 							</div>
 						</div>
 					</div>

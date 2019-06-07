@@ -3,37 +3,74 @@ $(document).ready(function(){
 	//init state water tank's
 	var waterLts = 1;
 	var capMax = 10;
-	var capMin = 0; 
+	var capMin = 0;
+	var maxWater = capMax - capMin;
+
 	//set functions
 	setValue();
-	setWaterFill();
+	setValuesTank();
+	setWaterFillByTank();
 	inhabiSetup();
+	calculeMaxWater();
+	calculeWater(waterLts);
+
+	//Setup tank
+	$('#edit').click(function(){
+		$("#moreWater").attr("disabled", true);
+		$("#lessWater").attr("disabled", true);
+		$("#setWater").attr("disabled", true);
+		$("#setNumber").attr("disabled", true);
+		$("#drain").attr("disabled", true);
+		$(".setup").attr("disabled", false);
+	});
+
+	$('#cancel').click(function(){
+		$("#moreWater").attr("disabled", false);
+		$("#lessWater").attr("disabled", false);
+		$("#setWater").attr("disabled", false);
+		$("#setNumber").attr("disabled", false);
+		$("#drain").attr("disabled", false);
+		$(".setup").attr("disabled", true);
+		setValuesTank();
+	});
+
+	$('#confirm').click(function(){
+		$("#moreWater").attr("disabled", false);
+		$("#lessWater").attr("disabled", false);
+		$("#setWater").attr("disabled", false);
+		$("#setNumber").attr("disabled", false);
+		$("#drain").attr("disabled", false);
+		$(".setup").attr("disabled", true);
+		var capMax = parseFloat($('#max').val());
+		var capMin = parseFloat($('#min').val());
+		$('#max').val(capMax);
+		$('#min').val(capMin);
+		calculeMaxWater();
+	});
 
 	//Manual Control Water
 	$('#moreWater').click(function(){
-		if (parseFloat(waterLts) < capMax){
+		if (parseFloat(waterLts) < parseFloat($('#max').val())){
 			waterLts++;
 			setValue();
-			setWaterFill();
+			setWaterFillByTank();
 		}
 	});
 	$('#lessWater').click(function(){
-		if (parseFloat(waterLts) > capMin){
+		if (parseFloat(waterLts) > parseFloat($('#min').val())){
 			waterLts--;
 			setValue();
-			setWaterFill();
+			setWaterFillByTank();
 		}
 	});
-	function setValue(){
-		$("#waterLts").val(waterLts);	
-	}
+	
 
 	//SetAuto Control Water
 	$('#setWater').click(function(){
-		if (parseFloat($('#setNumber').val()) >= capMin && parseFloat($('#setNumber').val()) <= capMax){
+		if (parseFloat($('#setNumber').val()) >= parseFloat($('#min').val()) && parseFloat($('#setNumber').val()) <= parseFloat($('#max').val())){
 			waterLts = parseFloat($('#setNumber').val());
 			setValue();
-			setWaterFill();
+			setWaterFillByTank();
 		}else if ($('#setNumber').val() == ""){
 			alert("Ingresa un valor primero!");
 		} else {
@@ -41,7 +78,49 @@ $(document).ready(function(){
 		}
 	});
 
+	//Drain water function
+	$('#drain').click(function(){
+		if(confirm('Are u sure u want drain tank?')){
+  			waterLts = 0;
+			setValue();
+			setWaterFillByTank();
+ 		}
+	});
+
+	//Set value water
+	function setValue(){
+		$("#waterLts").val(waterLts);
+	}
+
+	//Set values tank
+	function setValuesTank(){
+		$('#max').val(capMax);
+		$('#min').val(capMin);
+	}
+
+	//Calculate the max water
+	function calculeMaxWater(){
+		maxWater = parseFloat($('#max').val()) - parseFloat($('#min').val());
+		return maxWater;
+	}
+
+	function calculeWater(waterLts){
+		water = waterLts - parseFloat($('#min').val());
+		return water;
+	}
+
 	//states of water tank's
+	//capacity of water change by tank 
+	function setWaterFillByTank(){
+		tankMax = calculeMaxWater();
+		waterMax = calculeWater(waterLts);
+		fillPorcentWater = `${waterMax*100/tankMax}%`;
+		//console.log(fillPorcentWater);
+		$("#water").css("height", fillPorcentWater);
+
+	}
+
+	//capacity water default function
 	function setWaterFill(){
 		switch(waterLts){
 			case 0:
@@ -74,7 +153,7 @@ $(document).ready(function(){
 			case 9:
 				$("#water").css("height", "90%");
 				break;
-			case 10:
+			case 10:				
 				$("#water").css("height", "100%");
 				break;
 		}
